@@ -1,5 +1,26 @@
-const App = () => {
-  return <div>Starter Code</div>;
-};
+import { useEffect } from "react";
+import { connect } from "react-redux";
+import { handleInitialData } from "../actions/shared"
+// import Dashboar d from "./Dashboard";
+import NewTweet from "./NewTweet"
+import LoadingBar from "react-redux-loading-bar"
 
-export default App;
+const App = (props) => {
+  useEffect(()=> {
+    props.dispatch(handleInitialData())
+  },[])
+
+  return (
+    <div>
+      <LoadingBar />
+      {props.loading === true ? null : <NewTweet />}
+    </div> 
+
+  );
+}
+
+const mapStateToProps = ({authedUser}) => ({
+  loading: true === null,
+})
+
+export default connect()(App);
