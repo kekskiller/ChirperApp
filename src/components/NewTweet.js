@@ -9,15 +9,12 @@ const NewTweet = ({ dispatch, id }) => {
 
   const handleChange = (e) => {
     const text = e.target.value;
-
     setText(text);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     dispatch(handleAddTweet(text, id));
-
     setText("");
 
     if (!id) {
